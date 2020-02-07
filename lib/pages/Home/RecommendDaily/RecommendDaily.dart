@@ -6,7 +6,7 @@ import 'package:netease_music/api/index.dart';
 import 'package:netease_music/components/Loading.dart';
 import 'package:netease_music/components/SliverCustomHeaderDelegate.dart';
 import 'package:netease_music/components/StickyHeaderDelegate.dart';
-import 'package:netease_music/modal/RecommendSong.dart';
+import 'package:netease_music/modal/Song.dart';
 import 'package:netease_music/util/ColorsUtils.dart';
 
 /// 每日推荐组件
@@ -23,7 +23,7 @@ class RecommendDaily extends StatefulWidget {
 class _RecommendDailyState extends State<RecommendDaily> {
   Api api = new Api();
 
-  List<RecommendSong> songs;
+  List<Song> songs;
 
   bool initialized = false;
 
@@ -146,7 +146,7 @@ class _Header extends StatelessWidget {
 }
 
 class _Song extends StatelessWidget {
-  final RecommendSong recommendSong;
+  final Song recommendSong;
 
   _Song({Key key, this.recommendSong}) : super(key: key);
 

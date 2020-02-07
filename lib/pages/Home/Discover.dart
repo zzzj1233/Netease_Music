@@ -12,7 +12,7 @@ import 'package:netease_music/components/NoMore.dart';
 import 'package:netease_music/components/RecommendHeader.dart';
 import 'package:netease_music/components/RecommendSongWidget.dart';
 import 'package:netease_music/components/SongListItem.dart';
-import 'package:netease_music/modal/RecommendSong.dart';
+import 'package:netease_music/modal/Song.dart';
 import 'package:netease_music/pages/Home/new/NewAlbum.dart';
 import 'package:netease_music/pages/Home/new/NewSong.dart';
 import 'package:netease_music/util/ColorsUtils.dart';
@@ -33,7 +33,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
 
   List<SongListItem> recommendSongList = new List();
 
-  List<RecommendSong> nineRecommendSongs = new List();
+  List<Song> nineRecommendSongs = new List();
 
   bool initialized = false;
 

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:netease_music/modal/NewSongInfo.dart';
-import 'package:netease_music/modal/RecommendSong.dart';
+import 'package:netease_music/modal/Song.dart';
 import 'package:netease_music/util/ColorsUtils.dart';
 
 class NewSongWidget extends StatelessWidget {

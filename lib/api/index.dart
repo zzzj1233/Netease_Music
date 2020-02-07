@@ -9,7 +9,7 @@ import 'package:netease_music/components/SongListItem.dart';
 import 'package:netease_music/modal/AlbumInfo.dart';
 import 'package:netease_music/modal/CheckPhoneExistsModal.dart';
 import 'package:netease_music/modal/NewSongInfo.dart';
-import 'package:netease_music/modal/RecommendSong.dart';
+import 'package:netease_music/modal/Song.dart';
 import 'package:netease_music/modal/TopListItem.dart';
 import 'package:netease_music/util/CookieUtils.dart';
 
@@ -133,24 +133,24 @@ class Api {
   }
 
   /// 获取每日推荐歌曲
-  Future<List<RecommendSong>> recommendSongs() async {
+  Future<List<Song>> recommendSongs() async {
     List songs = await getRecommendDaily();
-    List<RecommendSong> recommendSongList = [];
+    List<Song> recommendSongList = [];
 
 
 
     songs.forEach((song){
-      recommendSongList.add(RecommendSong.fromApi(song));
+      recommendSongList.add(Song.fromApi(song));
     });
 
     return recommendSongList;
   }
 
   /// 从每日推荐中随机推荐9首歌
-  Future<List<RecommendSong>> recommendNineSongs() async {
+  Future<List<Song>> recommendNineSongs() async {
     List songs = await getRecommendDaily();
     List<int> added = [];
-    List<RecommendSong> recommendSongList = [];
+    List<Song> recommendSongList = [];
 
     int index = -1;
 
@@ -161,7 +161,7 @@ class Api {
       added.add(index);
       Map song = songs[index];
 
-      recommendSongList.add(RecommendSong.fromApi(song));
+      recommendSongList.add(Song.fromApi(song));
     }
 
     return recommendSongList;

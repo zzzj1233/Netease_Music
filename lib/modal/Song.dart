@@ -1,12 +1,12 @@
-class RecommendSong {
+class Song {
   String singerName;
   String songName;
   String coverUrl;
   String albumName;
 
-  RecommendSong({this.singerName, this.songName, this.coverUrl});
+  Song({this.singerName, this.songName, this.coverUrl});
 
-  RecommendSong.fromApi(Map song) {
+  Song.fromApi(Map song) {
     this.songName = song["name"];
     this.singerName = _getSingerName(song);
     this.coverUrl = song["album"]["picUrl"];
