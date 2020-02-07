@@ -8,4 +8,9 @@ class ImageUtils {
   static String url() {
     return "https://www.itying.com/images/flutter/1.png";
   }
+
+  static Image defaultBlurImage(BoxFit fit, double width, double height) {
+    return Image.asset("images/defaultBlurImage.jpg",
+        fit: fit, width: width, height: height);
+  }
 }
