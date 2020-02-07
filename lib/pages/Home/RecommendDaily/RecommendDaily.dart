@@ -37,7 +37,6 @@ class _RecommendDailyState extends State<RecommendDaily> {
   @override
   void initState() {
     /// 设置状态栏颜色透明
-    FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
     this.initData();
     super.initState();
   }
@@ -63,10 +62,10 @@ class _RecommendDailyState extends State<RecommendDaily> {
   @override
   void deactivate() {
     /// 如果上一个route需要设置状态栏颜色,则回调
-    if (ModalRoute.of(context).settings.arguments is Function) {
-      Function function = ModalRoute.of(context).settings.arguments;
-      function();
-    }
+//    if (ModalRoute.of(context).settings.arguments is Function) {
+//      Function function = ModalRoute.of(context).settings.arguments;
+//      function();
+//    }
     super.deactivate();
   }
 

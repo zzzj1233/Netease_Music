@@ -23,10 +23,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    FlutterStatusbarcolor.setStatusBarColor(ColorUtils.hexToColor("#FAFAFA"));
     this.tabController = new TabController(length: 2, vsync: this);
     this.tabController.index = 1;
-
+    FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
 //    BotToast.showEnhancedWidget(
 //        toastBuilder: (CancelFunc cancelFunc) {
 //          return Container(

@@ -24,21 +24,21 @@ class SliverCustomHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   double get maxExtent => this.expandedHeight;
 
-  void updateStatusBarBrightness(shrinkOffset) {
-    if (shrinkOffset > 50 && this.statusBarMode == 'dark') {
-      this.statusBarMode = 'light';
-      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarBrightness: Brightness.light,
-        statusBarIconBrightness: Brightness.light,
-      ));
-    } else if (shrinkOffset <= 50 && this.statusBarMode == 'light') {
-      this.statusBarMode = 'dark';
-      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarBrightness: Brightness.dark,
-        statusBarIconBrightness: Brightness.dark,
-      ));
-    }
-  }
+//  void updateStatusBarBrightness(shrinkOffset) {
+//    if (shrinkOffset > 50 && this.statusBarMode == 'dark') {
+//      this.statusBarMode = 'light';
+//      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+//        statusBarBrightness: Brightness.light,
+//        statusBarIconBrightness: Brightness.light,
+//      ));
+//    } else if (shrinkOffset <= 50 && this.statusBarMode == 'light') {
+//      this.statusBarMode = 'dark';
+//      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+//        statusBarBrightness: Brightness.dark,
+//        statusBarIconBrightness: Brightness.dark,
+//      ));
+//    }
+//  }
 
   @override
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {

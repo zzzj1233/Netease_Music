@@ -46,7 +46,6 @@ class _SongListState extends State<SongList> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
     pageController = new PageController();
     this.initData();
   }

@@ -54,10 +54,6 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
     super.dispose();
   }
 
-  setStatusBarColor() {
-    FlutterStatusbarcolor.setStatusBarColor(ColorUtils.hexToColor("#FAFAFA"));
-  }
-
   void initData() async {
     Future<List> nineSongsFuture = api.recommendNineSongs().then((songs) {
       this.nineRecommendSongs = songs;
@@ -128,22 +124,14 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                         icon: FontAwesomeIcons.calendar,
                         title: "每日推荐",
                         onPress: () {
-                          Navigator.of(context).pushNamed("recommend_daily",
-                              arguments: () {
-                            FlutterStatusbarcolor.setStatusBarColor(
-                                ColorUtils.hexToColor("#FAFAFA"));
-                          });
+                          Navigator.of(context).pushNamed("recommend_daily");
                         },
                       ),
                       IconTextButton(
                         title: "歌单",
                         icon: FontAwesomeIcons.clipboardList,
                         onPress: () {
-                          Navigator.of(context).pushNamed("song_list",
-                              arguments: () {
-                                FlutterStatusbarcolor.setStatusBarColor(
-                                    ColorUtils.hexToColor("#FAFAFA"));
-                              });
+                          Navigator.of(context).pushNamed("song_list");
                         },
                       ),
                       IconTextButton(

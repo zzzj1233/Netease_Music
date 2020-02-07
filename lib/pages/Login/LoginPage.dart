@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:netease_music/api/index.dart';
 import 'package:netease_music/util/ColorsUtils.dart';
@@ -22,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
+    FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
   }
 
   @override
@@ -33,10 +35,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent, //or set color with: Color(0xFF0000FF)
-    ));
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorUtils.hexToColor("#C62F2F"),
