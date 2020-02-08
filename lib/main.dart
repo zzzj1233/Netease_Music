@@ -2,14 +2,9 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:netease_music/api/index.dart';
-import 'package:netease_music/pages/Home/Home.dart';
-import 'package:netease_music/pages/Home/RecommendDaily/RecommendDaily.dart';
-import 'package:netease_music/pages/Home/SongList/SongList.dart';
-import 'package:netease_music/pages/Login/LoginPage.dart';
-import 'package:netease_music/pages/Login/PhoneLogin.dart';
-import 'package:netease_music/pages/Login/PhoneLoginVerificationCode.dart';
-import 'package:netease_music/pages/Login/PhonePassWordLogin.dart';
 import 'package:netease_music/provider/BlurImageModal.dart';
+import 'package:netease_music/provider/PlayerModal.dart';
+import 'package:netease_music/route/Routes.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -55,21 +50,20 @@ class App extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           navigatorObservers: [BotToastNavigatorObserver()],
           theme: ThemeData(fontFamily: "Microsoft YaHei"),
-          routes: {
-            "/": (context) => LoginPage(),
-            "login_phone": (context) => PhoneLogin(),
-            "login_phone_code": (context) => PhoneLoginVerificationCode(),
-            "home": (context) => Home(),
-            "login_phone_password": (context) => PhonePassWordLogin(),
-            "recommend_daily": (context) => RecommendDaily(),
-            "song_list": (context) => SongList(),
-          },
-        initialRoute: logged ? "home" : "/",
-//          initialRoute: "recommend_daily",
+          routes: Routes.routes,
+          initialRoute: logged ? Routes.HOME_PAGE : Routes.LOGIN_PAGE,
+//          initialRoute: "player",
         ),
       ),
       providers: <SingleChildCloneableWidget>[
-        ChangeNotifierProvider.value(value: BlurImageModal())
+        ChangeNotifierProvider.value(value: BlurImageModal()),
+        ChangeNotifierProvider(
+          create: (context) {
+            PlayerModal playerModal = new PlayerModal();
+            playerModal.init();
+            return playerModal;
+          },
+        )
       ],
     );
   }

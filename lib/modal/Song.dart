@@ -1,16 +1,25 @@
+import 'package:netease_music/util/ImageUtils.dart';
+
 class Song {
   String singerName;
   String songName;
   String coverUrl;
   String albumName;
+  int duration;
+  int id;
+  String smallCoverUrl;
 
-  Song({this.singerName, this.songName, this.coverUrl});
+  Song(
+      {this.singerName, this.songName, this.coverUrl, this.albumName, this.duration, int id});
 
   Song.fromApi(Map song) {
     this.songName = song["name"];
     this.singerName = _getSingerName(song);
     this.coverUrl = song["album"]["picUrl"];
     this.albumName = song["album"]["name"];
+    this.duration = song["duration"];
+    this.id = song["id"];
+    this.smallCoverUrl = this.coverUrl + ImageUtils.smallImageSuffix;
   }
 
   String _getSingerName(Map song) {

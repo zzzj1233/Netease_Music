@@ -43,7 +43,7 @@ class _RecommendPageSwiperState extends State<RecommendPageSwiper> {
             final double opacity = _index == index ? 1 : .3;
             return _SwiperItem(
               opacity: opacity,
-              url: this.widget.bannerSongs[index].picUrl,
+              url: this.widget.bannerSongs[index].smallPicUrl,
               title: this.widget.bannerSongs[index].title,
               playCount: this.widget.bannerSongs[index].playCount,
             );
@@ -102,6 +102,7 @@ class _SwiperItem extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 color: Colors.white.withOpacity(.8),
+                width: double.infinity,
                 child: Text(
                   this.title,
                   style: TextStyle(

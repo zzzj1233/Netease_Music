@@ -14,7 +14,8 @@ import 'package:netease_music/util/ImageUtils.dart';
 /// 每日推荐组件
 
 class RecommendDaily extends StatefulWidget {
-  RecommendDaily({Key key}) : super(key: key);
+  RecommendDaily({Key key}) : super(key: key){
+  }
 
   @override
   _RecommendDailyState createState() {

@@ -23,7 +23,7 @@ class NewSongWidget extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: Image.network(
-                    newSongInfo.picurl,
+                    newSongInfo.smallPicUrl,
                     fit: BoxFit.cover,
                   ),
                 )),

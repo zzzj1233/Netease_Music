@@ -4,8 +4,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:netease_music/modal/Song.dart';
+import 'package:netease_music/provider/PlayerModal.dart';
+import 'package:netease_music/route/Routes.dart';
 import 'package:netease_music/util/ColorsUtils.dart';
 import 'package:netease_music/util/ImageUtils.dart';
+import 'package:netease_music/util/PlayerUtils.dart';
+import 'package:provider/provider.dart';
 
 import 'FlexibleDetailBar.dart';
 import 'PlayListHeader.dart';
@@ -126,76 +130,99 @@ class _Song extends StatelessWidget {
 
   _Song({Key key, this.song}) : super(key: key);
 
+  void playSong(PlayerModal playerModal,BuildContext context) {
+    PlayerUtils.playSongFromSong(this.song, playerModal);
+    Navigator.pushNamed(context, Routes.PLAYER_PAGE);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 40,
-        margin: EdgeInsets.symmetric(vertical: 2),
-        child: Row(
-          children: <Widget>[
-            Container(
-                padding: EdgeInsets.only(right: 20),
-                height: 40,
-                width: 60,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
-                  child: Image.network(
-                    song.coverUrl,
-                    fit: BoxFit.cover,
-                  ),
-                )),
-            Expanded(
-                flex: 1,
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: 26,
-                      width: double.infinity,
-                      padding: EdgeInsets.only(top: 8),
-                      child: Text(this.song.songName,
-                          maxLines: 1, overflow: TextOverflow.ellipsis),
+    return Consumer<PlayerModal>(builder: (context, playerModal, child) {
+      return Container(
+          height: 40,
+          margin: EdgeInsets.symmetric(vertical: 2),
+          child: Row(
+            children: <Widget>[
+              Container(
+                  padding: EdgeInsets.only(right: 20),
+                  height: 40,
+                  width: 60,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: Image.network(
+                      song.smallCoverUrl,
+                      fit: BoxFit.cover,
                     ),
-                    Container(
-                      height: 14,
-                      width: double.infinity,
-                      child: Text(
-                        "${this.song.singerName}   -   ${this.song.albumName}",
-                        style: TextStyle(color: Colors.grey, fontSize: 10),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                )),
-            Container(
-              width: 30,
-              child: Center(
-                  child: Container(
-                      width: 20,
-                      height: 20,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        color: Colors.transparent,
-                        border:
-                            Border.all(color: ColorUtils.lightGrey(), width: 1),
-                      ),
-                      child: Center(
-                        child: Icon(
-                          Icons.play_arrow,
-                          color: Colors.grey,
-                          size: 15,
+                  )),
+              Expanded(
+                  flex: 1,
+
+                  /// 歌名和歌手
+                  child: InkWell(
+                    onTap: () {
+                      this.playSong(playerModal,context);
+                    },
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 26,
+                          width: double.infinity,
+                          padding: EdgeInsets.only(top: 8),
+                          child: Text(this.song.songName,
+                              maxLines: 1, overflow: TextOverflow.ellipsis),
                         ),
-                      ))),
-            ),
-            Container(
-              width: 30,
-              child: Icon(
-                Icons.format_align_left,
-                color: Colors.grey,
-                size: 15,
+                        Container(
+                          height: 14,
+                          width: double.infinity,
+                          child: Text(
+                            "${this.song.singerName}   -   ${this.song.albumName}",
+                            style: TextStyle(color: Colors.grey, fontSize: 10),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )),
+
+              /// 播放按钮
+              InkWell(
+                child: Container(
+                  width: 30,
+                  child: Center(
+                      child: Container(
+                          width: 20,
+                          height: 20,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.transparent,
+                            border: Border.all(
+                                color: ColorUtils.lightGrey(), width: 1),
+                          ),
+                          child: Center(
+                            child: Icon(
+                              Icons.play_arrow,
+                              color: Colors.grey,
+                              size: 15,
+                            ),
+                          ))),
+                ),
+                onTap: () {
+                  this.playSong(playerModal,context);
+                },
               ),
-            )
-          ],
-        ));
+
+              /// 查看歌曲详情按钮
+              Container(
+                width: 30,
+                child: Icon(
+                  Icons.format_align_left,
+                  color: Colors.grey,
+                  size: 15,
+                ),
+              )
+            ],
+          ));
+    });
   }
 }

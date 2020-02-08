@@ -97,6 +97,7 @@ class _SongListState extends State<SongList> with TickerProviderStateMixin {
                     /// AppBar
                     CustomAppBar(
                       title: "歌单广场",
+                      ignoreStatusBar: true,
                     ),
 
                     /// Tabbar

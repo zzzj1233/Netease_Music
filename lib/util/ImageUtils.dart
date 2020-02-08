@@ -13,4 +13,12 @@ class ImageUtils {
     return Image.asset("images/defaultBlurImage.jpg",
         fit: fit, width: width, height: height);
   }
+
+  static String defaultBlurImageUrl = "images/defaultBlurImage.jpg";
+
+  static String smallImageSuffix = "?param=200y200";
+
+  static String getSmallImageSuffix(wh) {
+    return "?param=${wh}y$wh";
+  }
 }

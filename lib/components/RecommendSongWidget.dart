@@ -21,7 +21,7 @@ class RecommendSongWidget extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: Image.network(
-                    recommendSong.coverUrl,
+                    recommendSong.smallCoverUrl,
                     fit: BoxFit.cover,
                   ),
                 )),

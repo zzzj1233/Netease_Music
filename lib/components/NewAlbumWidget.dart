@@ -20,7 +20,7 @@ class NewAlbumWidget extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: Image.network(
-                    albumInfo.picurl,
+                    albumInfo.smallPicUrl,
                     fit: BoxFit.cover,
                   ),
                 )),

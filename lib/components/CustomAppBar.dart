@@ -9,6 +9,8 @@ class CustomAppBar extends StatelessWidget {
   final List<Widget> actions;
   final double horizontalPadding;
   final Color backgroundColor;
+  final Widget titleWidget;
+  final bool ignoreStatusBar;
 
   CustomAppBar(
       {Key key,
@@ -17,27 +19,63 @@ class CustomAppBar extends StatelessWidget {
       this.title = "App",
       this.centerTitle = false,
       this.actions,
-      this.horizontalPadding = 3,
-      this.backgroundColor = Colors.transparent})
+      this.horizontalPadding = 5,
+      this.backgroundColor = Colors.transparent,
+      this.titleWidget,
+      this.ignoreStatusBar = false})
       : super(key: key);
+
+  Widget buildTitle() {
+    if (this.titleWidget != null) {
+      return Expanded(
+        child: this.titleWidget,
+      );
+    }
+    Widget title = this.centerTitle
+        ? Text(this.title, textAlign: TextAlign.center)
+        : Text(this.title, textAlign: TextAlign.start);
+    return Expanded(
+      child:Container(
+        width: double.infinity,
+        child:  title,
+      )
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    Widget leading =
-        this.leading ?? Navigator.canPop(context) ? BackButton() : Container();
+    Widget leading = this.leading == null
+        ? Navigator.canPop(context) ? BackButton() : Container()
+        : this.leading;
 
-    Widget title = this.centerTitle
-        ? Text(this.title)
-        : Text(this.title, textAlign: TextAlign.center);
-    return Container(
+    List<Widget> children = [];
+    children.add(leading);
+    children.add(buildTitle());
+    if (this.actions != null) {
+      children.addAll(actions);
+    }
+
+    return this.ignoreStatusBar ? Container(
         width: MediaQuery.of(context).size.width,
         color: this.backgroundColor,
         height: this.height,
         padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
         child: Center(
           child: Row(
-            children: <Widget>[leading, title],
+            children: children,
           ),
-        ));
+        )) :SafeArea(
+      child: Container(
+          width: MediaQuery.of(context).size.width,
+          color: this.backgroundColor,
+          height: this.height,
+          padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+          child: Center(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: children,
+            ),
+          )),
+    );
   }
 }

@@ -4,6 +4,7 @@ import 'dart:core';
 import 'dart:math';
 
 import 'package:bot_toast/bot_toast.dart';
+import 'package:date_format/date_format.dart';
 import 'package:dio/dio.dart';
 import 'package:netease_music/components/SongListItem.dart';
 import 'package:netease_music/modal/AlbumInfo.dart';
@@ -12,6 +13,7 @@ import 'package:netease_music/modal/NewSongInfo.dart';
 import 'package:netease_music/modal/Song.dart';
 import 'package:netease_music/modal/TopListItem.dart';
 import 'package:netease_music/util/CookieUtils.dart';
+import 'package:netease_music/util/ImageUtils.dart';
 
 import 'BannerTypes.dart';
 
@@ -115,6 +117,7 @@ class Api {
       songListItem.playCount = item["playCount"];
       songListItem.id = item["id"];
       result.add(songListItem);
+      songListItem.smallPicUrl = songListItem.picUrl + ImageUtils.smallImageSuffix;
     });
 
     return result;
@@ -136,8 +139,6 @@ class Api {
   Future<List<Song>> recommendSongs() async {
     List songs = await getRecommendDaily();
     List<Song> recommendSongList = [];
-
-
 
     songs.forEach((song){
       recommendSongList.add(Song.fromApi(song));
@@ -291,8 +292,17 @@ class Api {
       songListItem.id = item["id"];
       songListItem.updateTime = item["updateTime"];
       songListItem.playCount = item["playCount"];
+      songListItem.smallPicUrl = songListItem.picUrl + ImageUtils.smallImageSuffix;
       result.add(songListItem);
     });
     return result;
   }
+
+  /// 获取歌曲播放URL
+  Future<String> getSongUrlById(int id) async{
+    final String url = "/song/url?id=$id";
+    Response response = await dio.get(url);
+    return response.data["data"][0]["url"];
+  }
+
 }

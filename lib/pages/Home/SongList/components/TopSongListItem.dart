@@ -24,7 +24,7 @@ class TopSongListItem extends StatelessWidget {
                   return ClipRRect(
                     borderRadius: BorderRadius.circular(5),
                     child: CommonImage(
-                      url: song.picUrl,
+                      url: song.smallPicUrl,
                       fit: BoxFit.cover,
                       width: constraint.maxWidth,
                     ),
