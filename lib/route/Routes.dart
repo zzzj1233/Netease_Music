@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
+import 'package:netease_music/modal/SongList.dart';
 import 'package:netease_music/pages/Home/Home.dart';
 import 'package:netease_music/pages/Home/RecommendDaily/RecommendDaily.dart';
-import 'package:netease_music/pages/Home/SongList/SongList.dart';
 import 'package:netease_music/pages/Login/LoginPage.dart';
 import 'package:netease_music/pages/Login/PhoneLogin.dart';
 import 'package:netease_music/pages/Login/PhoneLoginVerificationCode.dart';
 import 'package:netease_music/pages/Login/PhonePassWordLogin.dart';
 import 'package:netease_music/pages/Player/Player.dart';
+import 'package:netease_music/pages/SongList/SongListPage.dart';
+import './../pages/Home/SongList/SongList.dart' as SongListPage1;
 
 class Routes {
   static const String LOGIN_PAGE = "/";
@@ -25,6 +27,8 @@ class Routes {
 
   static const String PLAYER_PAGE = "player";
 
+  static const String SONG_LIST_DETAIL = "song_list_detail";
+
   static final Map<String, WidgetBuilder> routes = {
     LOGIN_PAGE: (context) => LoginPage(),
     PHONE_LOGIN_PAGE: (context) => PhoneLogin(),
@@ -33,7 +37,8 @@ class Routes {
     HOME_PAGE: (context) => Home(),
     PASSWORD_LOGIN_PAGE: (context) => PhonePassWordLogin(),
     RECOMMEND_DAILY_PAGE: (context) => RecommendDaily(),
-    SONG_LIST_PAGE: (context) => SongList(),
-    PLAYER_PAGE: (context) => Player()
+    SONG_LIST_PAGE: (context) => SongListPage1.SongList(),
+    PLAYER_PAGE: (context) => Player(),
+    SONG_LIST_DETAIL: (context) => SongListPage(),
   };
 }

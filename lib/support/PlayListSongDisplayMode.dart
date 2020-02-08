@@ -1,0 +1,4 @@
+
+enum PlayListSongDisplayMode{
+  RANK,IMAGE
+}

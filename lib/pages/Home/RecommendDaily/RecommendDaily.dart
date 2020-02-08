@@ -3,19 +3,17 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:netease_music/api/index.dart';
 import 'package:netease_music/components/Loading.dart';
+import 'package:netease_music/components/MusicListHeader/impl/RecommendDailyHeader.dart';
 import 'package:netease_music/components/PlayList.dart';
-import 'package:netease_music/components/PlayListHeader.dart';
 import 'package:netease_music/modal/Song.dart';
 import 'package:netease_music/util/ImageUtils.dart';
 
 /// 每日推荐组件
 
 class RecommendDaily extends StatefulWidget {
-  RecommendDaily({Key key}) : super(key: key){
-  }
+  RecommendDaily({Key key}) : super(key: key) {}
 
   @override
   _RecommendDailyState createState() {
@@ -82,13 +80,15 @@ class _RecommendDailyState extends State<RecommendDaily> {
   @override
   Widget build(BuildContext context) {
     if (!this.initialized) {
-      return Loading();
+      return Scaffold(
+        body: Loading(),
+      );
     }
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
         body: PlayList(
-          musicListHeader: MusicListHeader(
+          musicListHeader: RecommendDailyHeader(
             onTap: () {},
             songListCount: this.songs.length,
             showCount: true,

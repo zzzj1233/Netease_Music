@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:netease_music/route/Routes.dart';
 import 'package:netease_music/util/ImageUtils.dart';
 import 'package:netease_music/util/NumberUtils.dart';
 
@@ -23,52 +24,61 @@ class SongListItem extends StatelessWidget {
         picUrl == null ? null : picUrl + ImageUtils.smallImageSuffix;
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(right: 10),
-      child: Column(
-        children: <Widget>[
-          Container(
-              height: 100,
-              width: 100,
-              child: Stack(
-                children: <Widget>[
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
-                    child: Image.network(this.smallPicUrl, fit: BoxFit.fill),
-                  ),
-                  Positioned(
-                    right: 5,
-                    top: 2,
-                    child: Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.play_arrow,
-                          size: 8,
-                          color: Colors.white,
-                        ),
-                        Text(
-                          NumberUtils.int2chineseNum(playCount),
-                          style: TextStyle(color: Colors.white, fontSize: 8),
-                        )
-                      ],
+      child: InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, Routes.SONG_LIST_DETAIL,
+              arguments: {"id": id});
+        },
+        splashColor: Colors.purpleAccent.withOpacity(.2),
+        child: Column(
+          children: <Widget>[
+            Container(
+                height: 100,
+                width: 100,
+                child: Stack(
+                  children: <Widget>[
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Image.network(this.smallPicUrl, fit: BoxFit.fill),
                     ),
-                  )
-                ],
-              )),
-          Container(
-            margin: EdgeInsets.only(top: 2),
-            child: Text(
-              "  " + title,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 10,
+                    Positioned(
+                      right: 5,
+                      top: 2,
+                      child: Row(
+                        children: <Widget>[
+                          Icon(
+                            Icons.play_arrow,
+                            size: 8,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            NumberUtils.int2chineseNum(playCount),
+                            style: TextStyle(color: Colors.white, fontSize: 8),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                )),
+            Container(
+              margin: EdgeInsets.only(top: 2),
+              child: Text(
+                "  " + title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 10,
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

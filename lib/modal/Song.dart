@@ -1,3 +1,4 @@
+import 'package:netease_music/modal/SongList.dart';
 import 'package:netease_music/util/ImageUtils.dart';
 
 class Song {
@@ -9,8 +10,36 @@ class Song {
   int id;
   String smallCoverUrl;
 
+  /// SongListSong
+
+  /// 是否是独家
+  bool private;
+
+  /// 是否有hq音质
+  bool hq;
+
+  /// 是否可以播放
+  bool playable;
+
+  Song.fromSongListSong(SongListSong song) {
+    this.singerName = song.singerName;
+    this.playable = song.playable;
+    this.hq = song.hq;
+    this.private = song.private;
+    this.coverUrl = song.picUrl;
+    this.albumName = song.albumName;
+    this.id = song.id;
+    this.songName = song.name;
+    this.smallCoverUrl = this.coverUrl + ImageUtils.smallImageSuffix;
+  }
+
   Song(
-      {this.singerName, this.songName, this.coverUrl, this.albumName, this.duration, int id});
+      {this.singerName,
+      this.songName,
+      this.coverUrl,
+      this.albumName,
+      this.duration,
+      int id});
 
   Song.fromApi(Map song) {
     this.songName = song["name"];
@@ -24,8 +53,13 @@ class Song {
 
   String _getSingerName(Map song) {
     if (song["artists"] is List) {
-      StringBuffer stringBuffer = new StringBuffer();
       List list = song["artists"];
+      if (list.length == 1) {
+        return list[0]["name"];
+      }
+
+      StringBuffer stringBuffer = new StringBuffer();
+
       for (int i = 0; i < list.length; i++) {
         stringBuffer.write(list[i]["name"]);
         if (i != list.length - 1) {

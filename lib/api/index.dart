@@ -11,6 +11,7 @@ import 'package:netease_music/modal/AlbumInfo.dart';
 import 'package:netease_music/modal/CheckPhoneExistsModal.dart';
 import 'package:netease_music/modal/NewSongInfo.dart';
 import 'package:netease_music/modal/Song.dart';
+import 'package:netease_music/modal/SongList.dart';
 import 'package:netease_music/modal/TopListItem.dart';
 import 'package:netease_music/util/CookieUtils.dart';
 import 'package:netease_music/util/ImageUtils.dart';
@@ -117,7 +118,8 @@ class Api {
       songListItem.playCount = item["playCount"];
       songListItem.id = item["id"];
       result.add(songListItem);
-      songListItem.smallPicUrl = songListItem.picUrl + ImageUtils.smallImageSuffix;
+      songListItem.smallPicUrl =
+          songListItem.picUrl + ImageUtils.smallImageSuffix;
     });
 
     return result;
@@ -140,7 +142,7 @@ class Api {
     List songs = await getRecommendDaily();
     List<Song> recommendSongList = [];
 
-    songs.forEach((song){
+    songs.forEach((song) {
       recommendSongList.add(Song.fromApi(song));
     });
 
@@ -292,17 +294,24 @@ class Api {
       songListItem.id = item["id"];
       songListItem.updateTime = item["updateTime"];
       songListItem.playCount = item["playCount"];
-      songListItem.smallPicUrl = songListItem.picUrl + ImageUtils.smallImageSuffix;
+      songListItem.smallPicUrl =
+          songListItem.picUrl + ImageUtils.smallImageSuffix;
       result.add(songListItem);
     });
     return result;
   }
 
   /// 获取歌曲播放URL
-  Future<String> getSongUrlById(int id) async{
+  Future<String> getSongUrlById(int id) async {
     final String url = "/song/url?id=$id";
     Response response = await dio.get(url);
     return response.data["data"][0]["url"];
   }
 
+  /// 根据歌单ID获取歌单详细信息
+  Future<SongList> selectSongListById(int id) async {
+    final String url = "/playlist/detail?id=$id";
+    Response response = await dio.get(url);
+    return SongList.fromMap(response.data);
+  }
 }

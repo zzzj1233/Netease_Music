@@ -8,6 +8,7 @@ import 'package:netease_music/components/CustomAppBar.dart';
 import 'package:netease_music/modal/PlaySong.dart';
 import 'package:netease_music/provider/PlayerModal.dart';
 import 'package:netease_music/util/DateUtils.dart';
+import 'package:netease_music/util/IconFontUtils.dart';
 import 'package:netease_music/util/ImageUtils.dart';
 import 'package:provider/provider.dart';
 
@@ -34,6 +35,7 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
         new AnimationController(vsync: this, duration: Duration(seconds: 15));
 
     this.animationController.repeat();
+
     /// 初始化音乐播放器
     super.initState();
   }
@@ -86,7 +88,8 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
                           ),
                           Text(
                             song?.singerName ?? "未知",
-                            style: TextStyle(fontSize: 10, color: Colors.white54),
+                            style:
+                                TextStyle(fontSize: 10, color: Colors.white54),
                           ),
                         ],
                       ),
@@ -96,7 +99,7 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
                         Icons.arrow_back,
                         color: Colors.white,
                       ),
-                      onPressed: (){
+                      onPressed: () {
                         Navigator.pop(context);
                       },
                     ),
@@ -146,25 +149,25 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
                                   size: 18,
                                 ),
                                 Icon(
-                                  IconData(0xe502, fontFamily: 'iconfont'),
+                                  IconFontUtils.getIcon("xe603"),
                                   size: 18,
                                   color: Colors.white.withOpacity(.4),
                                 ),
                                 IconButton(
                                   icon: Icon(
-                                    IconData(0xe642, fontFamily: 'iconfont'),
+                                    IconFontUtils.getIcon("xe642"),
                                     color: Colors.white.withOpacity(.4),
                                     size: 18,
                                   ),
                                   onPressed: () {},
                                 ),
                                 Icon(
-                                  FontAwesomeIcons.commentDots,
+                                  IconFontUtils.getIcon("xe751"),
                                   color: Colors.white.withOpacity(.4),
                                   size: 18,
                                 ),
                                 Icon(
-                                  IconData(0xe63f, fontFamily: 'iconfont'),
+                                  IconFontUtils.getIcon("xe644"),
                                   color: Colors.white.withOpacity(.4),
                                   size: 18,
                                 ),
@@ -254,15 +257,15 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
                                     MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
-                                  /// 循环播放: 0xe606
-                                  /// 列表播放: 0xea77
+                                  /// 循环播放: xe6a2
+                                  /// 列表播放: xea77
                                   Icon(
-                                    IconData(0xea77, fontFamily: 'iconfont'),
+                                    IconFontUtils.getIcon("xea77"),
                                     color: Colors.white.withOpacity(.8),
                                     size: 18,
                                   ),
                                   Icon(
-                                    IconData(0xe507, fontFamily: 'iconfont'),
+                                    IconData(0xe604, fontFamily: "iconfont"),
                                     color: Colors.white.withOpacity(.8),
                                     size: 18,
                                   ),
@@ -279,12 +282,12 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
                                     },
                                   ),
                                   Icon(
-                                    IconData(0xe620, fontFamily: 'iconfont'),
+                                    IconFontUtils.getIcon("xe620"),
                                     color: Colors.white.withOpacity(.8),
                                     size: 18,
                                   ),
                                   Icon(
-                                    IconData(0xe570, fontFamily: 'iconfont'),
+                                    IconFontUtils.getIcon("xe600"),
                                     color: Colors.white.withOpacity(.8),
                                     size: 18,
                                   ),
@@ -305,8 +308,8 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
 
   IconData buildPlayIcon() {
     return this.isPlay
-        ? IconData(0xe7c6, fontFamily: 'iconfont')
-        : IconData(0xe601, fontFamily: 'iconfont');
+        ? IconFontUtils.getIcon("xe7c6")
+        : IconFontUtils.getIcon("xe601");
   }
 
   void play(PlayerModal playerModal) {

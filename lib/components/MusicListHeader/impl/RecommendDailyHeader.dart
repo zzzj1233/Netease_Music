@@ -1,19 +1,25 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:netease_music/components/MusicListHeader/MusicListHeader.dart';
 
-class MusicListHeader extends StatelessWidget implements PreferredSizeWidget {
+class RecommendDailyHeader extends MusicListHeader {
   final int songListCount;
 
   final VoidCallback onTap;
 
   final bool showCount;
 
-  const MusicListHeader(
+  const RecommendDailyHeader(
       {Key key,
       this.songListCount = 0,
       @required this.onTap,
       this.showCount = false})
       : super(key: key);
+
+  @override
+  Size get preferredSize => Size.fromHeight(20);
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +78,4 @@ class MusicListHeader extends StatelessWidget implements PreferredSizeWidget {
           ))),
     );
   }
-
-  @override
-  Size get preferredSize => Size.fromHeight(20);
 }

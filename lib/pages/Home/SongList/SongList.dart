@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:netease_music/api/index.dart';
 import 'package:netease_music/components/CustomAppBar.dart';
 import 'package:netease_music/components/Loading.dart';
 import 'package:netease_music/pages/Home/SongList/components/BlurBackGround.dart';
 import 'package:netease_music/pages/Home/SongList/components/RecommendPage.dart';
-import 'package:netease_music/util/NumberUtils.dart';
 
 import 'TopSongListTabbar.dart';
 import 'components/TopSongListPage.dart';

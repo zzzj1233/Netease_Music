@@ -6,6 +6,8 @@ class NewSongInfo {
   String picurl;
   String alias;
   String smallPicUrl;
+  int id;
+  int duration;
 
   NewSongInfo({this.songName, this.singerName, this.picurl, this.alias});
 
@@ -17,6 +19,8 @@ class NewSongInfo {
         this.alias = map["song"]["alias"][0];
       }
     }
+    this.id = map["id"];
+    this.duration = map["song"]["duration"];
     this.picurl = map["song"]["album"]["picUrl"];
     this.singerName = _getSingerName(map["song"]);
     this.smallPicUrl = this.picurl + ImageUtils.smallImageSuffix;

@@ -15,6 +15,7 @@ import 'package:netease_music/components/SongListItem.dart';
 import 'package:netease_music/modal/Song.dart';
 import 'package:netease_music/pages/Home/new/NewAlbum.dart';
 import 'package:netease_music/pages/Home/new/NewSong.dart';
+import 'package:netease_music/route/Routes.dart';
 import 'package:netease_music/util/ColorsUtils.dart';
 
 class Discover extends StatefulWidget {
@@ -131,7 +132,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                         title: "歌单",
                         icon: FontAwesomeIcons.clipboardList,
                         onPress: () {
-                          Navigator.of(context).pushNamed("song_list");
+                          Navigator.of(context).pushNamed(Routes.SONG_LIST_PAGE);
                         },
                       ),
                       IconTextButton(
@@ -164,11 +165,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                   child: ListView.builder(
                     itemExtent: 110,
                     itemBuilder: (context, index) {
-                      return SongListItem(
-                        picUrl: this.recommendSongList[index].picUrl,
-                        title: this.recommendSongList[index].title,
-                        playCount: this.recommendSongList[index].playCount,
-                      );
+                      return this.recommendSongList[index];
                     },
                     itemCount: this.recommendSongList.length,
                     scrollDirection: Axis.horizontal,
