@@ -36,7 +36,7 @@ class Api {
   }
 
   Api._internal() {
-    dio.options.baseUrl = "http://192.168.0.4:3000";
+    dio.options.baseUrl = "http://eaxrwv.natappfree.cc";
     dio.options.connectTimeout = 5000; //5s
     dio.options.receiveTimeout = 3000;
 

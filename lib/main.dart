@@ -1,6 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:netease_music/api/index.dart';
 import 'package:netease_music/provider/BlurImageModal.dart';
 import 'package:netease_music/provider/PlayerModal.dart';
@@ -10,9 +11,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 main() async {
   final bool logged = await checkLogin();
-  runApp(App(
-    logged: logged,
-  ));
+
+  /// 强制竖屏
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
+    runApp(App(
+      logged: logged,
+    ));
+  });
 }
 
 Future<bool> checkLogin() async {
