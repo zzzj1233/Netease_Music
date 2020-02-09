@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NoMore extends StatelessWidget {
   NoMore({Key key}) : super(key: key);
@@ -6,13 +7,13 @@ class NoMore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
+      height: ScreenUtil().setHeight(200),
       width: double.infinity,
       decoration: BoxDecoration(
 
       ),
       child: Center(
-        child: Text("到底啦~",style: TextStyle(color: Colors.grey,fontSize: 10),),
+        child: Text("到底啦~",style: TextStyle(color: Colors.grey,fontSize: ScreenUtil().setSp(30)),),
       ),
     );
   }

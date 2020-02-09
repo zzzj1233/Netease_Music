@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netease_music/modal/NewSongInfo.dart';
 import 'package:netease_music/modal/Song.dart';
 import 'package:netease_music/provider/PlayerModal.dart';
@@ -20,14 +21,14 @@ class NewSongWidget extends StatelessWidget {
         this.playSong(context);
       },
       child: Container(
-          height: 40,
-          margin: EdgeInsets.symmetric(vertical: 2),
+          height: ScreenUtil().setHeight(120),
+          margin: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(6)),
           child: Row(
             children: <Widget>[
               Container(
-                  padding: EdgeInsets.only(right: 20),
-                  height: 40,
-                  width: 60,
+                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(60)),
+                  height: ScreenUtil().setHeight(120),
+                  width: ScreenUtil().setWidth(180),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(5),
                     child: Image.network(
@@ -38,7 +39,7 @@ class NewSongWidget extends StatelessWidget {
               Expanded(
                   flex: 1,
                   child: Container(
-                      height: 40,
+                      height: ScreenUtil().setHeight(120),
                       child: LayoutBuilder(
                         builder: (c, box) {
                           return Column(
@@ -49,11 +50,11 @@ class NewSongWidget extends StatelessWidget {
                                   TextSpan(children: [
                                     TextSpan(
                                         text: this.newSongInfo.songName,
-                                        style: TextStyle(fontSize: 12)),
+                                        style: TextStyle(fontSize: ScreenUtil().setSp(36))),
                                     TextSpan(
                                       text: "  -  ${this.newSongInfo.singerName}",
                                       style: TextStyle(
-                                          color: Colors.grey, fontSize: 10),
+                                          color: Colors.grey, fontSize: ScreenUtil().setSp(30)),
                                     ),
                                   ]),
                                   maxLines: 1,
@@ -65,7 +66,7 @@ class NewSongWidget extends StatelessWidget {
                                 child: Text(
                                   this.newSongInfo.alias ?? "",
                                   style:
-                                  TextStyle(fontSize: 8, color: Colors.grey),
+                                  TextStyle(fontSize: ScreenUtil().setSp(24), color: Colors.grey),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -75,11 +76,11 @@ class NewSongWidget extends StatelessWidget {
                         },
                       ))),
               Container(
-                width: 60,
+                width: ScreenUtil().setWidth(180),
                 child: Center(
                     child: Container(
-                        width: 20,
-                        height: 20,
+                        width: ScreenUtil().setWidth(60),
+                        height: ScreenUtil().setWidth(60),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.transparent,
@@ -90,7 +91,7 @@ class NewSongWidget extends StatelessWidget {
                           child: Icon(
                             Icons.play_arrow,
                             color: Colors.red,
-                            size: 15,
+                            size: ScreenUtil().setSp(45),
                           ),
                         ))),
               )

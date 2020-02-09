@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netease_music/api/index.dart';
+import 'package:netease_music/components/Loading.dart';
 import 'package:netease_music/modal/TopListItem.dart';
 import 'package:netease_music/util/ColorsUtils.dart';
 
@@ -39,41 +41,35 @@ class _DiscoverTopListState extends State<DiscoverTopList> {
   @override
   Widget build(BuildContext context) {
     return this._topList == null
-        ? Container(
-            height: 180,
-            width: MediaQuery.of(context).size.width - 60,
-            child: Center(
-              child: CupertinoActivityIndicator(),
-            ),
-          )
+        ? Loading()
         : Container(
-            height: 180,
+            height: ScreenUtil().setHeight(540),
             child: ListView.builder(
               itemCount: this._topList.length,
               scrollDirection: Axis.horizontal,
               itemExtent: MediaQuery.of(context).size.width - 60,
               itemBuilder: (context, index) {
                 return Container(
-                  margin: EdgeInsets.only(top: 10, right: 20),
-                  height: 180,
+                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(60)),
+                  height: ScreenUtil().setHeight(540),
                   width: MediaQuery.of(context).size.width - 60,
                   decoration: BoxDecoration(
                     color: ColorUtils.hexToColor("#EEEEEE"),
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  padding: EdgeInsets.symmetric(vertical: 7),
+                  padding: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(21)),
                   child: Column(
                     children: <Widget>[
                       InkWell(
                         child: Container(
-                          padding: EdgeInsets.only(left: 15),
+                          padding: EdgeInsets.only(left: ScreenUtil().setWidth(45)),
                           width: MediaQuery.of(context).size.width - 60,
-                          margin: EdgeInsets.symmetric(vertical: 1.5),
+                          margin: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(4.5)),
                           child: Text(
                             "${_topList[index].title} > ",
                             textAlign: TextAlign.start,
                             style: TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.w700),
+                                fontSize: ScreenUtil().setSp(36), fontWeight: FontWeight.w700),
                           ),
                         ),
                       ),
@@ -129,8 +125,8 @@ class TopListSongItem extends StatelessWidget {
     return InkWell(
       child: Container(
         width: MediaQuery.of(context).size.width - 40,
-        height: 40,
-        margin: EdgeInsets.symmetric(vertical: 2),
+        height: ScreenUtil().setHeight(120),
+        margin: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(6)),
         child: Row(
           children: <Widget>[
             Expanded(
@@ -139,8 +135,8 @@ class TopListSongItem extends StatelessWidget {
                   child: Row(
                 children: <Widget>[
                   Container(
-                    width: 40,
-                    height: 40,
+                    width: ScreenUtil().setWidth(120),
+                    height: ScreenUtil().setWidth(120),
                     child: Center(
                       child: Text(
                         index.toString(),
@@ -156,11 +152,11 @@ class TopListSongItem extends StatelessWidget {
                         TextSpan(children: [
                           TextSpan(
                               text: song.songName,
-                              style: TextStyle(fontSize: 12)),
+                              style: TextStyle(fontSize: ScreenUtil().setSp(36))),
                           TextSpan(
                               text: " - ${song.singerName}",
                               style:
-                                  TextStyle(fontSize: 10, color: Colors.grey)),
+                                  TextStyle(fontSize: ScreenUtil().setSp(30), color: Colors.grey)),
                         ]),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -170,7 +166,7 @@ class TopListSongItem extends StatelessWidget {
 
                   /// 预留Icon
                   Container(
-                    width: 40,
+                    width: ScreenUtil().setWidth(120),
                   )
                 ],
               )),

@@ -1,6 +1,7 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -181,8 +182,8 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
 
                 /// 推荐歌曲ListView
                 Container(
-                  margin: EdgeInsets.only(top: 10),
-                  height: 140,
+                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(30)),
+                  height: ScreenUtil().setHeight(400),
                   child: ListView(
                     itemExtent: MediaQuery.of(context).size.width - 40,
                     children: <Widget>[
@@ -246,12 +247,13 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                         children: <Widget>[
                           InkWell(
                             child: Container(
-                              width: 30,
+                              width: ScreenUtil().setWidth(80),
                               child: Text(
                                 "新歌",
                                 style: selectNewSong
-                                    ? TextStyle(fontWeight: FontWeight.w700)
-                                    : TextStyle(color: Colors.grey),
+                                    ? TextStyle(fontWeight: FontWeight.w700,fontSize: ScreenUtil().setSp(38))
+                                    : TextStyle(color: Colors.grey,fontSize: ScreenUtil().setSp(38)),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                             onTap: () {
@@ -269,12 +271,13 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                           VerticalDivider(color: Colors.grey),
                           InkWell(
                             child: Container(
-                              width: 30,
+                              width: ScreenUtil().setWidth(80),
                               child: Text(
                                 "新碟",
                                 style: selectNewSong
-                                    ? TextStyle(color: Colors.grey)
-                                    : TextStyle(fontWeight: FontWeight.w700),
+                                    ? TextStyle(color: Colors.grey,fontSize: ScreenUtil().setSp(38))
+                                    : TextStyle(fontWeight: FontWeight.w700,fontSize: ScreenUtil().setSp(38)),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                             onTap: () {
@@ -296,7 +299,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                 /// 新歌新碟PageView
                 Container(
                     width: double.infinity,
-                    height: 140,
+                    height: ScreenUtil().setHeight(400),
                     margin: EdgeInsets.only(top: 10),
                     child: PageView.builder(
                       controller: this.pageController,

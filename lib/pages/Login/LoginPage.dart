@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context,allowFontScaling: true);
+    ScreenUtil.init(context,allowFontScaling: false);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorUtils.hexToColor("#C62F2F"),

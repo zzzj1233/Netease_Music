@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netease_music/modal/AlbumInfo.dart';
 
 class NewAlbumWidget extends StatelessWidget {
@@ -9,14 +10,14 @@ class NewAlbumWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 40,
-        margin: EdgeInsets.symmetric(vertical: 2),
+        height: ScreenUtil().setHeight(120),
+        margin: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(6)),
         child: Row(
           children: <Widget>[
             Container(
-                padding: EdgeInsets.only(right: 20),
-                height: 40,
-                width: 60,
+                padding: EdgeInsets.only(right: ScreenUtil().setWidth(60)),
+                height: ScreenUtil().setHeight(120),
+                width: ScreenUtil().setWidth(180),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: Image.network(
@@ -32,10 +33,10 @@ class NewAlbumWidget extends StatelessWidget {
                       TextSpan(children: [
                         TextSpan(
                             text: this.albumInfo.name,
-                            style: TextStyle(fontSize: 12)),
+                            style: TextStyle(fontSize: ScreenUtil().setSp(36))),
                         TextSpan(
                           text: "  -  ${this.albumInfo.singerName}",
-                          style: TextStyle(color: Colors.grey, fontSize: 10),
+                          style: TextStyle(color: Colors.grey, fontSize: ScreenUtil().setSp(30)),
                         ),
                       ]),
                       maxLines: 1,

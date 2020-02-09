@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netease_music/api/index.dart';
 import 'package:netease_music/components/NewAlbumWidget.dart';
 import 'package:netease_music/modal/AlbumInfo.dart';
@@ -42,7 +43,7 @@ class _NewAlbumState extends State<NewAlbum>
             child: CupertinoActivityIndicator(),
           )
         : Container(
-            height: 140,
+            height: ScreenUtil().setHeight(420),
             width: MediaQuery.of(context).size.width - 40,
             child: ListView(
               scrollDirection: Axis.horizontal,

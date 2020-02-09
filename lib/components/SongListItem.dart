@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netease_music/route/Routes.dart';
 import 'package:netease_music/util/ImageUtils.dart';
 import 'package:netease_music/util/NumberUtils.dart';
@@ -29,7 +30,7 @@ class SongListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 10),
+      margin: EdgeInsets.only(right: ScreenUtil().setWidth(30)),
       child: InkWell(
         onTap: () {
           Navigator.pushNamed(context, Routes.SONG_LIST_DETAIL,
@@ -39,8 +40,8 @@ class SongListItem extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Container(
-                height: 100,
-                width: 100,
+                height: ScreenUtil().setWidth(300),
+                width: ScreenUtil().setHeight(300),
                 child: Stack(
                   children: <Widget>[
                     ClipRRect(
@@ -48,18 +49,18 @@ class SongListItem extends StatelessWidget {
                       child: Image.network(this.smallPicUrl, fit: BoxFit.fill),
                     ),
                     Positioned(
-                      right: 5,
-                      top: 2,
+                      right: ScreenUtil().setWidth(15),
+                      top: ScreenUtil().setHeight(6),
                       child: Row(
                         children: <Widget>[
                           Icon(
                             Icons.play_arrow,
-                            size: 8,
+                            size: ScreenUtil().setSp(24),
                             color: Colors.white,
                           ),
                           Text(
                             NumberUtils.int2chineseNum(playCount),
-                            style: TextStyle(color: Colors.white, fontSize: 8),
+                            style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(24)),
                           )
                         ],
                       ),
@@ -67,13 +68,13 @@ class SongListItem extends StatelessWidget {
                   ],
                 )),
             Container(
-              margin: EdgeInsets.only(top: 2),
+              margin: EdgeInsets.only(top: ScreenUtil().setHeight(2)),
               child: Text(
                 "  " + title,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  fontSize: 10,
+                  fontSize: ScreenUtil().setSp(29),
                 ),
               ),
             )

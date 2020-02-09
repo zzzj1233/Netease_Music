@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netease_music/util/ColorsUtils.dart';
 
 class RecommendHeader extends StatelessWidget {
@@ -22,7 +23,7 @@ class RecommendHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 15),
+      margin: EdgeInsets.only(top: ScreenUtil().setHeight(45)),
       width: double.infinity,
       child: Column(
         children: <Widget>[
@@ -30,13 +31,13 @@ class RecommendHeader extends StatelessWidget {
             width: double.infinity,
             child: Text(
               smallTitle,
-              style: TextStyle(fontSize: 9, color: Colors.grey),
+              style: TextStyle(fontSize: ScreenUtil().setHeight(27), color: Colors.grey),
               textAlign: TextAlign.start,
             ),
           ),
           Container(
               width: double.infinity,
-              height: 20,
+              height: ScreenUtil().setHeight(60),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -44,16 +45,16 @@ class RecommendHeader extends StatelessWidget {
                       Text(
                         mainTitle,
                         style: TextStyle(
-                            fontSize: 13, fontWeight: FontWeight.w700),
+                            fontSize: ScreenUtil().setHeight(39), fontWeight: FontWeight.w700),
                         textAlign: TextAlign.start,
                       ),
                   Container(
-                    width: 65,
+                    width: ScreenUtil().setWidth(195),
                     child: OutlineButton(
                       child: Text(
                         buttonTitle,
                         style: buttonTextStyle == null
-                            ? TextStyle(fontSize: 8)
+                            ? TextStyle(fontSize: ScreenUtil().setSp(24))
                             : buttonTextStyle,
                       ),
                       onPressed: () {},

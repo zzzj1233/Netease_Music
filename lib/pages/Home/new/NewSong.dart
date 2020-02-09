@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netease_music/api/index.dart';
 import 'package:netease_music/components/NewSongWidget.dart';
 import 'package:netease_music/modal/NewSongInfo.dart';
@@ -41,7 +42,7 @@ class _NewSongState extends State<NewSong> with AutomaticKeepAliveClientMixin {
             child: CupertinoActivityIndicator(),
           )
         : Container(
-            height: 140,
+            height: ScreenUtil().setHeight(420),
             width: MediaQuery.of(context).size.width - 40,
             child: ListView(
               itemExtent: MediaQuery.of(context).size.width - 40,

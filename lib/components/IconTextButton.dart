@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class IconTextButton extends StatelessWidget {
   final IconData icon;
@@ -14,21 +15,21 @@ class IconTextButton extends StatelessWidget {
     return Container(
 
         /// 左右8个margin
-        margin: EdgeInsets.symmetric(horizontal: 8),
+        margin: EdgeInsets.symmetric(horizontal: ScreenUtil().setHeight(24)),
         width: MediaQuery.of(context).size.width / 7 - 10,
-        height: 70,
+        height: ScreenUtil().setHeight(210),
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
         child: InkWell(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Container(
-                height: 40,
-                width: MediaQuery.of(context).size.width / 7 - 15,
+                height: ScreenUtil().setHeight(120),
+                width: MediaQuery.of(context).size.width / 7 - 5,
                 child: Icon(
                   this.icon,
                   color: Colors.white,
-                  size: 17,
+                  size: ScreenUtil().setSp(61),
                 ),
                 decoration:
                     BoxDecoration(shape: BoxShape.circle, color: Colors.red),
@@ -36,7 +37,7 @@ class IconTextButton extends StatelessWidget {
               Text(
                 this.title,
                 style: TextStyle(
-                  fontSize: 10,
+                  fontSize: ScreenUtil().setSp(30),
                 ),
               )
             ],
