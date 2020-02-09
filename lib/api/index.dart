@@ -4,8 +4,8 @@ import 'dart:core';
 import 'dart:math';
 
 import 'package:bot_toast/bot_toast.dart';
-import 'package:date_format/date_format.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:netease_music/components/SongListItem.dart';
 import 'package:netease_music/modal/AlbumInfo.dart';
 import 'package:netease_music/modal/CheckPhoneExistsModal.dart';
@@ -13,8 +13,8 @@ import 'package:netease_music/modal/NewSongInfo.dart';
 import 'package:netease_music/modal/Song.dart';
 import 'package:netease_music/modal/SongList.dart';
 import 'package:netease_music/modal/TopListItem.dart';
-import 'package:netease_music/util/CookieUtils.dart';
 import 'package:netease_music/util/ImageUtils.dart';
+import 'package:cookie_jar/cookie_jar.dart';
 
 import 'BannerTypes.dart';
 
@@ -40,24 +40,16 @@ class Api {
     dio.options.connectTimeout = 5000; //5s
     dio.options.receiveTimeout = 3000;
 
+    DefaultCookieJar cookieJar = new DefaultCookieJar();
+    dio.interceptors.add(CookieManager(cookieJar));
+
     dio.interceptors
         .add(InterceptorsWrapper(onRequest: (RequestOptions options) async {
-      if (cookie != null && cookie.isNotEmpty) {
-        options.headers.putIfAbsent("cookie", () => cookie);
-      }
       return options; //continue
     }, onResponse: (Response response) async {
       if (response.data["code"] != 200) {
         BotToast.showText(text: "${response.data["msg"]}");
       }
-
-      /// set cookie
-      if (response.headers.map["set-cookie"] != null &&
-          response.headers.map["set-cookie"].isNotEmpty) {
-        this.cookie = CookieUtils.setCookieListToCookieString(
-            response.headers.map["set-cookie"]);
-      }
-
       return response.data; // continue
     }, onError: (DioError e) async {
       print(e);
