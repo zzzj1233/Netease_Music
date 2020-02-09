@@ -58,7 +58,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context);
+    ScreenUtil.init(context,allowFontScaling: true);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorUtils.hexToColor("#FAFAFA"),

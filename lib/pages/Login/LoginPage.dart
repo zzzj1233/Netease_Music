@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context);
+    ScreenUtil.init(context,allowFontScaling: true);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorUtils.hexToColor("#C62F2F"),
@@ -49,10 +49,11 @@ class _LoginPageState extends State<LoginPage> {
           child: Stack(
             children: <Widget>[
               Positioned(
-                top: 125,
-                left: MediaQuery.of(context).size.width / 2 - 25,
+                top: ScreenUtil().setHeight(250),
+                left: MediaQuery.of(context).size.width / 2 - ScreenUtil().setWidth(100),
                 child: Container(
-                  height: 50,
+                  height: ScreenUtil().setHeight(200),
+                  width: ScreenUtil().setWidth(200),
                   child: Image.asset(
                     "images/logo.png",
                   ),
@@ -61,9 +62,9 @@ class _LoginPageState extends State<LoginPage> {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  height: 190,
+                  height: ScreenUtil().setHeight(540),
                   width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 50),
+                  padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(100)),
                   child: Column(
                     children: <Widget>[
                       Container(
@@ -73,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                             /// 手机号登录
                             Container(
                               width: double.infinity,
-                              height: 40,
+                              height: ScreenUtil().setHeight(100),
                               child: FlatButton(
                                 color: Colors.white,
                                 child: Text("手机号登录"),
@@ -85,13 +86,13 @@ class _LoginPageState extends State<LoginPage> {
                                       .pushNamed("login_phone");
                                 },
                               ),
-                              margin: EdgeInsets.only(bottom: 10),
+                              margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
                             ),
 
                             /// 邮箱登录
                             Container(
                               width: double.infinity,
-                              height: 40,
+                              height: ScreenUtil().setHeight(100),
                               child: FlatButton(
                                 color: Colors.transparent,
                                 child: Text("邮箱登录"),
@@ -102,24 +103,24 @@ class _LoginPageState extends State<LoginPage> {
                                     borderRadius: BorderRadius.circular(15)),
                                 onPressed: () {},
                               ),
-                              margin: EdgeInsets.only(bottom: 10),
+                              margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
                             ),
 
                             /// 联合登录
                             Container(
-                              margin: EdgeInsets.only(top: 10),
+                              margin: EdgeInsets.only(top: ScreenUtil().setHeight(30)),
                               width: double.infinity,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   Container(
-                                    width: 35,
-                                    height: 35,
+                                    width: ScreenUtil().setWidth(115),
+                                    height: ScreenUtil().setHeight(115),
                                     child: Icon(
                                       FontAwesomeIcons.qq,
                                       color: Colors.white,
-                                      size: 20,
+                                      size: ScreenUtil().setSp(60),
                                     ),
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
@@ -128,12 +129,12 @@ class _LoginPageState extends State<LoginPage> {
                                             color: Colors.white12, width: 1)),
                                   ),
                                   Container(
-                                    width: 35,
-                                    height: 35,
+                                    width: ScreenUtil().setWidth(115),
+                                    height: ScreenUtil().setHeight(115),
                                     child: Icon(
                                       FontAwesomeIcons.weixin,
                                       color: Colors.white,
-                                      size: 20,
+                                      size: ScreenUtil().setSp(60),
                                     ),
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
@@ -142,12 +143,12 @@ class _LoginPageState extends State<LoginPage> {
                                             color: Colors.white12, width: 1)),
                                   ),
                                   Container(
-                                    width: 35,
-                                    height: 35,
+                                    width: ScreenUtil().setWidth(115),
+                                    height: ScreenUtil().setHeight(115),
                                     child: Icon(
                                       FontAwesomeIcons.weibo,
                                       color: Colors.white,
-                                      size: 20,
+                                      size: ScreenUtil().setSp(60),
                                     ),
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
@@ -162,8 +163,8 @@ class _LoginPageState extends State<LoginPage> {
                             /// 同意协议
                             Container(
                               width: double.infinity,
-                              height: 30,
-                              margin: EdgeInsets.only(top: 15),
+                              height: ScreenUtil().setHeight(115),
+                              margin: EdgeInsets.only(top: ScreenUtil().setHeight(10)),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
@@ -177,37 +178,37 @@ class _LoginPageState extends State<LoginPage> {
                                         child: this._agree
                                             ? Icon(
                                                 Icons.check_box,
-                                                size: 10,
+                                                size: ScreenUtil().setSp(50),
                                                 color: Colors.white,
                                               )
                                             : Icon(
                                                 Icons.check_box_outline_blank,
-                                                size: 10,
+                                                size: ScreenUtil().setSp(50),
                                                 color: Colors.white54,
                                               ),
                                         margin:
-                                            EdgeInsets.only(top: 0, right: 5),
+                                            EdgeInsets.only(top: 0, right: ScreenUtil().setWidth(15)),
                                       )),
                                   Text(
                                     "同意",
                                     style: TextStyle(
-                                        color: Colors.white54, fontSize: 8),
+                                        color: Colors.white54, fontSize: ScreenUtil().setSp(30)),
                                     textAlign: TextAlign.center,
                                   ),
                                   Text(
                                     "《用户手册》",
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 8),
+                                        color: Colors.white, fontSize: ScreenUtil().setWidth(30)),
                                   ),
                                   Text(
                                     "《隐私政策》",
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 8),
+                                        color: Colors.white, fontSize: ScreenUtil().setSp(30)),
                                   ),
                                   Text(
                                     "《儿童隐私政策》",
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 8),
+                                        color: Colors.white, fontSize: ScreenUtil().setSp(30)),
                                   ),
                                 ],
                               ),

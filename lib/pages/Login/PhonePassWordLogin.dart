@@ -2,6 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netease_music/api/index.dart';
 import 'package:netease_music/util/LoginUtils.dart';
 
@@ -165,7 +166,7 @@ class _PhonePassWordLoginState extends State<PhonePassWordLogin>
             AnimatedBuilder(
               builder: (context, child) {
                 return Container(
-                  margin: EdgeInsets.only(top: 10),
+                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(30)),
                   width: double.infinity,
                   padding: EdgeInsets.only(
                       left: 24 + animation.value, right: 24 - animation.value),
@@ -182,9 +183,9 @@ class _PhonePassWordLoginState extends State<PhonePassWordLogin>
                         suffixText: "忘记密码?",
                         suffixStyle: TextStyle(
                           color: Colors.blueAccent,
-                          fontSize: 9,
+                          fontSize: ScreenUtil().setSp(27),
                         ),
-                        hintStyle: TextStyle(fontSize: 12),
+                        hintStyle: TextStyle(fontSize: ScreenUtil().setSp(36)),
                         focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(width: 0))),
                   ),
@@ -193,10 +194,10 @@ class _PhonePassWordLoginState extends State<PhonePassWordLogin>
               animation: this.animation,
             ),
             Container(
-              margin: EdgeInsets.only(top: 20),
+              margin: EdgeInsets.only(top: ScreenUtil().setHeight(60)),
               width: double.infinity,
-              padding: EdgeInsets.only(left: 24, right: 24),
-              height: 30,
+              padding: EdgeInsets.only(left: ScreenUtil().setWidth(72), right: ScreenUtil().setWidth(72)),
+              height: ScreenUtil().setHeight(80),
               child: RaisedButton(
                 color: Colors.red,
                 child: Text("登录"),

@@ -52,7 +52,7 @@ class App extends StatelessWidget {
           theme: ThemeData(fontFamily: "Microsoft YaHei"),
           routes: Routes.routes,
           initialRoute: logged ? Routes.HOME_PAGE : Routes.LOGIN_PAGE,
-//          initialRoute: "player",
+//          initialRoute: Routes.PHONE_LOGIN_VERIFICATION_CODE_PAGE,
         ),
       ),
       providers: <SingleChildCloneableWidget>[

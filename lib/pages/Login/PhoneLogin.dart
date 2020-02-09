@@ -1,8 +1,7 @@
-import 'dart:async';
-
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netease_music/api/index.dart';
 import 'package:netease_music/modal/CheckPhoneExistsModal.dart';
 
@@ -118,7 +117,7 @@ class _PhoneLoginState extends State<PhoneLogin> with TickerProviderStateMixin {
         /// 标题
         title: Text(
           "手机号登录",
-          style: TextStyle(color: Colors.black, fontSize: 15),
+          style: TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(45)),
         ),
 
         /// 返回按钮
@@ -136,15 +135,15 @@ class _PhoneLoginState extends State<PhoneLogin> with TickerProviderStateMixin {
         children: <Widget>[
           /// 提示文本
           Container(
-            padding: EdgeInsets.only(left: 24),
-            margin: EdgeInsets.only(top: 30),
-            height: 20,
+            padding: EdgeInsets.only(left: ScreenUtil().setWidth(72)),
+            margin: EdgeInsets.only(top: ScreenUtil().setHeight(50)),
+            height: ScreenUtil().setHeight(50),
             width: double.infinity,
             child: Text(
               "未注册手机号登录后将自动创建账号",
               style: TextStyle(
                 color: Colors.grey,
-                fontSize: 10,
+                fontSize: ScreenUtil().setSp(40),
               ),
               textAlign: TextAlign.start,
             ),
@@ -154,8 +153,8 @@ class _PhoneLoginState extends State<PhoneLogin> with TickerProviderStateMixin {
           AnimatedBuilder(
             builder: (BuildContext context, Widget child) {
               return Container(
-                  height: 50,
-                  margin: EdgeInsets.symmetric(vertical: 40),
+                  height: ScreenUtil().setHeight(150),
+                  margin: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(100)),
                   padding: EdgeInsets.only(
                       left: offsetAnimation.value + 24.0,
                       right: 24.0 - offsetAnimation.value),
@@ -177,7 +176,7 @@ class _PhoneLoginState extends State<PhoneLogin> with TickerProviderStateMixin {
                               ? InkWell(
                                   child: Icon(
                                     Icons.close,
-                                    size: 12,
+                                    size: ScreenUtil().setSp(36),
                                     color: Colors.grey,
                                   ),
                                   onTap: () {
@@ -201,7 +200,7 @@ class _PhoneLoginState extends State<PhoneLogin> with TickerProviderStateMixin {
             animation: offsetAnimation,
           ),
           Container(
-            padding: EdgeInsets.only(left: 24, right: 24),
+            padding: EdgeInsets.only(left: ScreenUtil().setWidth(68), right: ScreenUtil().setWidth(68)),
             child: FlatButton(
               child: Text(
                 "下一步",
@@ -215,7 +214,7 @@ class _PhoneLoginState extends State<PhoneLogin> with TickerProviderStateMixin {
                   borderRadius: BorderRadius.horizontal(
                       left: Radius.circular(20), right: Radius.circular(20))),
             ),
-            height: 30,
+            height: ScreenUtil().setHeight(90),
             width: double.infinity,
           )
         ],

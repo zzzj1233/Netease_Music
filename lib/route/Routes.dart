@@ -31,8 +31,9 @@ class Routes {
   static final Map<String, WidgetBuilder> routes = {
     LOGIN_PAGE: (context) => LoginPage(),
     PHONE_LOGIN_PAGE: (context) => PhoneLogin(),
-    PHONE_LOGIN_VERIFICATION_CODE_PAGE: (context) =>
-        PhoneLoginVerificationCode(),
+    PHONE_LOGIN_VERIFICATION_CODE_PAGE: (context){
+      return PhoneLoginVerificationCode();
+    },
     HOME_PAGE: (context) => Home(),
     PASSWORD_LOGIN_PAGE: (context) => PhonePassWordLogin(),
     RECOMMEND_DAILY_PAGE: (context) => RecommendDaily(),

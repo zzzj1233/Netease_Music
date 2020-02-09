@@ -59,7 +59,6 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
   }
 
   Widget build(BuildContext context) {
-    ScreenUtil.init(context);
     return Scaffold(
         body: Consumer<PlayerModal>(builder: (context, playerModal, child) {
       PlaySong song = playerModal.currentSong;
