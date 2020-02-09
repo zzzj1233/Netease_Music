@@ -1,7 +1,9 @@
 import 'dart:ui';
 
+import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:netease_music/components/CompactDisc.dart';
 import 'package:netease_music/components/CustomAppBar.dart';
@@ -57,6 +59,7 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
   }
 
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     return Scaffold(
         body: Consumer<PlayerModal>(builder: (context, playerModal, child) {
       PlaySong song = playerModal.currentSong;
@@ -73,7 +76,7 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
                 children: <Widget>[
                   CustomAppBar(
                     titleWidget: Container(
-                      margin: EdgeInsets.only(left: 10),
+                      margin: EdgeInsets.only(left: ScreenUtil().setWidth(10)),
                       height: double.infinity,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -84,12 +87,12 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 13),
+                                fontSize: ScreenUtil().setSp(40)),
                           ),
                           Text(
                             song?.singerName ?? "未知",
                             style:
-                                TextStyle(fontSize: 10, color: Colors.white54),
+                                TextStyle(fontSize: ScreenUtil().setSp(40), color: Colors.white54),
                           ),
                         ],
                       ),
@@ -107,23 +110,23 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
                       Icon(
                         Icons.share,
                         color: Colors.white,
-                        size: 16,
+                        size: ScreenUtil().setSp(72),
                       )
                     ],
                   ),
 
                   /// 唱碟留白区
                   Container(
-                    margin: EdgeInsets.only(top: 100),
-                    width: 200,
-                    height: 200,
+                    margin: EdgeInsets.only(top: ScreenUtil().setHeight(250)),
+                    width: ScreenUtil().setWidth(700),
+                    height: ScreenUtil().setWidth(700),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.white10.withOpacity(.2),
                     ),
                     child: CompactDisc(
                       animationController: this.animationController,
-                      imageUrl: song?.coverUrl,
+                      imageUrl: song?.coverUrl == null ? null : song.coverUrl + ImageUtils.getSmallImageSuffix(500),
                     ),
                   ),
                   Expanded(
@@ -132,13 +135,13 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
                       children: <Widget>[
                         /// 五个按钮
                         Positioned(
-                          bottom: 100,
+                          bottom: ScreenUtil().setHeight(390),
                           left: 0,
                           right: 0,
                           child: Container(
-                            height: 30,
+                            height: ScreenUtil().setHeight(90),
                             width: double.infinity,
-                            padding: EdgeInsets.symmetric(horizontal: 25),
+                            padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(75)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -146,30 +149,27 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
                                 Icon(
                                   Icons.favorite_border,
                                   color: Colors.white.withOpacity(.4),
-                                  size: 18,
+                                  size: ScreenUtil().setSp(60),
                                 ),
                                 Icon(
                                   IconFontUtils.getIcon("xe603"),
-                                  size: 18,
+                                  size: ScreenUtil().setSp(60),
                                   color: Colors.white.withOpacity(.4),
                                 ),
-                                IconButton(
-                                  icon: Icon(
-                                    IconFontUtils.getIcon("xe642"),
-                                    color: Colors.white.withOpacity(.4),
-                                    size: 18,
-                                  ),
-                                  onPressed: () {},
+                                Icon(
+                                  IconFontUtils.getIcon("xe642"),
+                                  color: Colors.white.withOpacity(.4),
+                                  size: ScreenUtil().setSp(60),
                                 ),
                                 Icon(
                                   IconFontUtils.getIcon("xe751"),
                                   color: Colors.white.withOpacity(.4),
-                                  size: 18,
+                                  size: ScreenUtil().setSp(60),
                                 ),
                                 Icon(
                                   IconFontUtils.getIcon("xe644"),
                                   color: Colors.white.withOpacity(.4),
-                                  size: 18,
+                                  size: ScreenUtil().setSp(60),
                                 ),
                               ],
                             ),
@@ -178,12 +178,12 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
 
                         /// 进度条和时间
                         Positioned(
-                          bottom: 60,
+                          bottom: ScreenUtil().setHeight(270),
                           left: 0,
                           right: 0,
                           child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            height: 30,
+                            padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(30)),
+                            height: ScreenUtil().setHeight(60),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
@@ -198,7 +198,7 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
                                       timeStr,
                                       style: TextStyle(
                                           color: Colors.white.withOpacity(.5),
-                                          fontSize: 11),
+                                          fontSize: ScreenUtil().setSp(33)),
                                     );
                                   },
                                 ),
@@ -236,7 +236,7 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
                                   DateUtils.formatSecond(song?.duration ?? 0),
                                   style: TextStyle(
                                       color: Colors.white.withOpacity(.5),
-                                      fontSize: 11),
+                                      fontSize: ScreenUtil().setSp(33)),
                                 ),
                               ],
                             ),
@@ -245,13 +245,13 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
 
                         /// 播放控制按钮
                         Positioned(
-                          bottom: 10,
+                          bottom: ScreenUtil().setHeight(90),
                           left: 0,
                           right: 0,
                           child: Container(
-                            height: 40,
+                            height: ScreenUtil().setHeight(120),
                             width: double.infinity,
-                            padding: EdgeInsets.symmetric(horizontal: 25),
+                            padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(75)),
                             child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -262,34 +262,34 @@ class _PlayerState extends State<Player> with TickerProviderStateMixin {
                                   Icon(
                                     IconFontUtils.getIcon("xea77"),
                                     color: Colors.white.withOpacity(.8),
-                                    size: 18,
+                                    size: ScreenUtil().setSp(60),
                                   ),
                                   Icon(
                                     IconData(0xe604, fontFamily: "iconfont"),
                                     color: Colors.white.withOpacity(.8),
-                                    size: 18,
+                                    size: ScreenUtil().setSp(60),
                                   ),
 
                                   /// 暂停 0xe7c6
-                                  IconButton(
-                                    icon: Icon(
+                                  InkWell(
+                                    child: Icon(
                                       buildPlayIcon(),
                                       color: Colors.white.withOpacity(.8),
-                                      size: 32,
+                                      size: ScreenUtil().setSp(120),
                                     ),
-                                    onPressed: () {
+                                    onTap: () {
                                       this.play(playerModal);
                                     },
                                   ),
                                   Icon(
                                     IconFontUtils.getIcon("xe620"),
                                     color: Colors.white.withOpacity(.8),
-                                    size: 18,
+                                    size: ScreenUtil().setSp(60),
                                   ),
                                   Icon(
                                     IconFontUtils.getIcon("xe600"),
                                     color: Colors.white.withOpacity(.8),
-                                    size: 18,
+                                    size: ScreenUtil().setSp(60),
                                   ),
                                 ]),
                           ),

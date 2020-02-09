@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netease_music/util/ImageUtils.dart';
 
 class CompactDisc extends StatefulWidget {
@@ -32,21 +33,22 @@ class _CompactDiscState extends State<CompactDisc> {
     return RotationTransition(
       turns: widget.animationController,
       child: Container(
-          width: 180,
-          height: 180,
-          decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(.5),
-              blurRadius: 20,
-            )
-          ]),
-          child: CircleAvatar(
-            backgroundImage: widget.imageUrl != null
-                ? NetworkImage(
-                    widget.imageUrl,
-                  )
-                : AssetImage(ImageUtils.defaultBlurImageUrl),
-          )),
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(.5),
+                blurRadius: 20,
+              )
+            ],
+            color: Colors.blue,
+            image: DecorationImage(
+                image: widget.imageUrl != null
+                    ? NetworkImage(
+                        widget.imageUrl,
+                      )
+                    : AssetImage(ImageUtils.defaultBlurImageUrl))),
+      ),
     );
   }
 }

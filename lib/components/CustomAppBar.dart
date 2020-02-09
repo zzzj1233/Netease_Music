@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// 自定义的AppBar
 class CustomAppBar extends StatelessWidget {
@@ -11,10 +12,9 @@ class CustomAppBar extends StatelessWidget {
   final Color backgroundColor;
   final Widget titleWidget;
   final bool ignoreStatusBar;
-
   CustomAppBar(
       {Key key,
-      this.height = 40,
+      this.height,
       this.leading,
       this.title = "App",
       this.centerTitle = false,
@@ -53,12 +53,13 @@ class CustomAppBar extends StatelessWidget {
     children.add(buildTitle());
     if (this.actions != null) {
       children.addAll(actions);
+      children.add(Container(width: ScreenUtil().setWidth(60),));
     }
 
     return this.ignoreStatusBar ? Container(
         width: MediaQuery.of(context).size.width,
         color: this.backgroundColor,
-        height: this.height,
+        height: this.height == null ? ScreenUtil().setHeight(120) : this.height,
         padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
         child: Center(
           child: Row(
@@ -68,7 +69,7 @@ class CustomAppBar extends StatelessWidget {
       child: Container(
           width: MediaQuery.of(context).size.width,
           color: this.backgroundColor,
-          height: this.height,
+          height: this.height??ScreenUtil().setHeight(120),
           padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
           child: Center(
             child: Row(
