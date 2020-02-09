@@ -70,6 +70,9 @@ flutter:
    - family: iconfont
      fonts:
        - asset: fonts/iconfont.ttf
+   - family: iconfont2
+     fonts:
+       - asset: fonts/iconfont2.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

@@ -82,6 +82,7 @@ class SongList {
             private: songs[i]["copyright"] == 2,
             hq: songs[i]["h"] != null,
             playable: privileges[i]["st"] == 0,
+            vip: privileges[i]["fee"] != 8,
             singerName: _getSingerName(songs[i]["ar"]),
           ));
     }
@@ -142,6 +143,9 @@ class SongListSong {
 
   bool playable;
 
+  /// 只有vip才可以播放
+  bool vip;
+
   @override
   String toString() {
     return 'SongListSong{private: $private, hq: $hq, name: $name, singerName: $singerName, albumName: $albumName, id: $id, picUrl: $picUrl, playable: $playable}';
@@ -155,5 +159,6 @@ class SongListSong {
       this.albumName,
       this.id,
       this.picUrl,
-      this.playable});
+      this.playable,
+      this.vip});
 }

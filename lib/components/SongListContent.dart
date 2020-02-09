@@ -184,12 +184,14 @@ class SongListContent extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
+                        /// 评论
                         _IconTextButton(
                           icon: IconFontUtils.getIcon("xe751"),
                           title: this.songList.commentCount.toString(),
                         ),
+                        /// 分享
                         _IconTextButton(
-                          icon: IconFontUtils.getIcon("xe71f"),
+                          icon: IconFontUtils.getIcon2("xe618"),
                           title: this.songList.shareCount.toString(),
                         ),
                         _IconTextButton(

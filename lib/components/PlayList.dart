@@ -150,8 +150,21 @@ class _Song extends StatelessWidget {
 
   List<Widget> buildIconAndSingerName() {
     List<Widget> result = [];
+
     /// 为歌曲可用做颜色判断
     if (song.playable) {
+
+      if (song.vip) {
+        result.add(Container(
+          width: 20,
+          child: Icon(
+            IconFontUtils.getIcon2("xe628"),
+            size: 16,
+            color: Colors.red,
+          ),
+        ));
+      }
+
       if (song.private) {
         result.add(Container(
           width: 20,
@@ -172,6 +185,7 @@ class _Song extends StatelessWidget {
             color: Colors.red,
           ),
         ));
+
       }
 
       result.add(Expanded(
@@ -198,6 +212,38 @@ class _Song extends StatelessWidget {
     }
 
     return result;
+  }
+
+  Widget buildPlayMvIcon(BuildContext context){
+    if (song.vip || !(song.playable)) {
+      return Container();
+    }  else{
+      return InkWell(
+        child: Container(
+          width: 30,
+          child: Center(
+              child: Container(
+                  width: 20,
+                  height: 20,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    color: Colors.transparent,
+                    border: Border.all(
+                        color: ColorUtils.lightGrey(), width: 1),
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.play_arrow,
+                      color: Colors.grey,
+                      size: 15,
+                    ),
+                  ))),
+        ),
+        onTap: () {
+          this.playSong(context);
+        },
+      );
+    }
   }
 
   @override
@@ -242,10 +288,15 @@ class _Song extends StatelessWidget {
                 /// 歌名和歌手
                 child: InkWell(
                   onTap: () {
-                    if (song.playable) {
+                    if (song.playable && !(song.vip)) {
                       this.playSong(context);
                     } else {
                       /// todo 歌曲不可播放
+                      if (song.vip) {
+
+                      }  else{
+
+                      }
                     }
                   },
                   child: Column(
@@ -285,31 +336,7 @@ class _Song extends StatelessWidget {
                 )),
 
             /// 播放按钮
-            InkWell(
-              child: Container(
-                width: 30,
-                child: Center(
-                    child: Container(
-                        width: 20,
-                        height: 20,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
-                          color: Colors.transparent,
-                          border: Border.all(
-                              color: ColorUtils.lightGrey(), width: 1),
-                        ),
-                        child: Center(
-                          child: Icon(
-                            Icons.play_arrow,
-                            color: Colors.grey,
-                            size: 15,
-                          ),
-                        ))),
-              ),
-              onTap: () {
-                this.playSong(context);
-              },
-            ),
+            buildPlayMvIcon(context),
 
             /// 查看歌曲详情按钮
             Container(

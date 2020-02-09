@@ -21,27 +21,8 @@ class Song {
   /// 是否可以播放
   bool playable;
 
-  Song.fromSongListSong(SongListSong song) {
-    this.singerName = song.singerName;
-    this.playable = song.playable;
-    this.hq = song.hq;
-    this.private = song.private;
-    this.coverUrl = song.picUrl;
-    this.albumName = song.albumName;
-    this.id = song.id;
-    this.songName = song.name;
-    if (this.coverUrl != null) {
-      this.smallCoverUrl = this.coverUrl + ImageUtils.smallImageSuffix;
-    }
-  }
-
-  Song(
-      {this.singerName,
-      this.songName,
-      this.coverUrl,
-      this.albumName,
-      this.duration,
-      int id});
+  /// 只有vip才可以播放
+  bool vip;
 
   Song.fromApi(Map song) {
     this.songName = song["name"];
@@ -51,6 +32,25 @@ class Song {
     this.duration = song["duration"];
     this.id = song["id"];
     this.smallCoverUrl = this.coverUrl + ImageUtils.smallImageSuffix;
+    this.private = song["copyright"] == 2;
+    this.hq = song["hMusic"] != null;
+    this.playable = song["privilege"]["st"] == 0;
+    this.vip = song["privilege"]["fee"] != 8;
+  }
+
+  Song.fromSongListSong(SongListSong song) {
+    this.singerName = song.singerName;
+    this.playable = song.playable;
+    this.hq = song.hq;
+    this.private = song.private;
+    this.coverUrl = song.picUrl;
+    this.albumName = song.albumName;
+    this.id = song.id;
+    this.songName = song.name;
+    this.vip = song.vip;
+    if (this.coverUrl != null) {
+      this.smallCoverUrl = this.coverUrl + ImageUtils.smallImageSuffix;
+    }
   }
 
   String _getSingerName(Map song) {

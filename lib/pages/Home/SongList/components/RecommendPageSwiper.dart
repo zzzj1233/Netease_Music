@@ -44,7 +44,7 @@ class _RecommendPageSwiperState extends State<RecommendPageSwiper> {
             final double opacity = _index == index ? 1 : .3;
             return _SwiperItem(
               opacity: opacity,
-              url: this.widget.bannerSongs[index].picUrl + ImageUtils.getSmallImageSuffix(300),
+              url: this.widget.bannerSongs[index].picUrl + ImageUtils.getSmallImageSuffix(500),
               title: this.widget.bannerSongs[index].title,
               playCount: this.widget.bannerSongs[index].playCount,
             );
