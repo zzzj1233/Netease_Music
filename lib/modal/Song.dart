@@ -30,7 +30,9 @@ class Song {
     this.albumName = song.albumName;
     this.id = song.id;
     this.songName = song.name;
-    this.smallCoverUrl = this.coverUrl + ImageUtils.smallImageSuffix;
+    if (this.coverUrl != null) {
+      this.smallCoverUrl = this.coverUrl + ImageUtils.smallImageSuffix;
+    }
   }
 
   Song(

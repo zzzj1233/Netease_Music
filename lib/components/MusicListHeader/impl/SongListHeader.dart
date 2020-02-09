@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart' as prefix0;
 import 'package:flutter/material.dart';
 import 'package:netease_music/components/MusicListHeader/MusicListHeader.dart';
 import 'package:netease_music/util/ColorsUtils.dart';
+import 'package:netease_music/util/IconFontUtils.dart';
 
 class SongListHeader extends MusicListHeader {
   final int songListCount;
@@ -29,13 +30,15 @@ class SongListHeader extends MusicListHeader {
   @override
   Size get preferredSize => Size.fromHeight(20);
 
+
+  /// 根据是否收藏显示不同的组件
   Widget buildCollectWidget() {
     if (this.subscribed) {
       return Container(
           height: 30,
           child: Row(
             children: <Widget>[
-              Icon(Icons.insert_drive_file,color: Colors.grey,size: 10,),
+              Icon(IconFontUtils.getIcon("xe60d"),color: Colors.grey,size: 10,),
               Container(width: 5,),
               Text(this.collectCount.toString(),style:TextStyle(
                 color: Colors.grey,

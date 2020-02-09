@@ -12,16 +12,16 @@ import 'package:netease_music/support/PlayListSongDisplayMode.dart';
 import 'package:netease_music/util/ImageUtils.dart';
 
 /// 歌单通用页面
-class SongListPage extends StatefulWidget {
-  SongListPage({Key key}) : super(key: key);
+class SongListDetailPage extends StatefulWidget {
+  SongListDetailPage({Key key}) : super(key: key);
 
   @override
-  _SongListPageState createState() {
-    return _SongListPageState();
+  _SongListDetailPageState createState() {
+    return _SongListDetailPageState();
   }
 }
 
-class _SongListPageState extends State<SongListPage> {
+class _SongListDetailPageState extends State<SongListDetailPage> {
   int _songListId;
 
   bool initialized = false;
@@ -90,6 +90,7 @@ class _SongListPageState extends State<SongListPage> {
         value: SystemUiOverlayStyle.light,
         child: Scaffold(
           body: PlayList(
+            expandHeight: 250,
             songList: this.songs,
             title: Text("歌单"),
             musicListHeader: SongListHeader(
@@ -100,7 +101,7 @@ class _SongListPageState extends State<SongListPage> {
               songListCount: this.songList.length,
             ),
             content: SongListContent(
-              imageUrl: this.songList.coverImgUrl + ImageUtils.getSmallImageSuffix(500),
+              songList: this.songList,
             ),
             blurImage:
                 this.songList.coverImgUrl + ImageUtils.getSmallImageSuffix(200),

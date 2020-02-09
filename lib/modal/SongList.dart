@@ -24,6 +24,10 @@ class SongList {
 
   int subscribedCount;
 
+  int playCount;
+
+  String name;
+
   @override
   String toString() {
     return 'SongList{subscribers: $subscribers, subscribed: $subscribed, creator: $creator, description: $description, songs: $songs, length: $length}';
@@ -40,6 +44,8 @@ class SongList {
     this.commentCount = map["playlist"]["commentCount"];
     this.coverImgUrl = map["playlist"]["coverImgUrl"];
     this.subscribedCount = map["playlist"]["subscribedCount"];
+    this.name = map["playlist"]["name"];
+    this.playCount = map["playlist"]["playCount"];
   }
 
   void _fillSubscribed(List list) {

@@ -16,7 +16,7 @@ class ImageUtils {
 
   static String defaultBlurImageUrl = "images/defaultBlurImage.jpg";
 
-  static String smallImageSuffix = "?param=100y100";
+  static String smallImageSuffix = "?param=200y200";
 
   static String getSmallImageSuffix(int wh) {
     return "?param=${wh}y$wh";

@@ -4,6 +4,7 @@ import 'package:netease_music/components/CommonImage.dart';
 import 'package:netease_music/components/PlayCount.dart';
 import 'package:netease_music/components/SongListItem.dart';
 import 'package:netease_music/provider/BlurImageModal.dart';
+import 'package:netease_music/util/ImageUtils.dart';
 import 'package:provider/provider.dart';
 
 class RecommendPageSwiper extends StatefulWidget {
@@ -43,7 +44,7 @@ class _RecommendPageSwiperState extends State<RecommendPageSwiper> {
             final double opacity = _index == index ? 1 : .3;
             return _SwiperItem(
               opacity: opacity,
-              url: this.widget.bannerSongs[index].smallPicUrl,
+              url: this.widget.bannerSongs[index].picUrl + ImageUtils.getSmallImageSuffix(300),
               title: this.widget.bannerSongs[index].title,
               playCount: this.widget.bannerSongs[index].playCount,
             );
